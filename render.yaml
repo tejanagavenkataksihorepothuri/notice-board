@@ -14,18 +14,14 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        fromDatabase:
-          name: notice-board-db
-          property: connectionString
+        value: mongodb+srv://ptejanvk:Teja%404569@main.pgpt3dm.mongodb.net/notice-board?retryWrites=true&w=majority&appName=Main
       - key: JWT_SECRET
         generateValue: true
     autoDeploy: true
 
   # Frontend Service  
-  - type: web
+  - type: static
     name: notice-board-frontend
-    env: static
-    region: oregon
     plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
@@ -43,5 +39,5 @@ services:
         destination: /index.html
     envVars:
       - key: REACT_APP_API_URL
-        value: https://notice-board-backend.onrender.com
+        value: https://notice-board-backend.onrender.com/api
     autoDeploy: true
