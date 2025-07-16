@@ -2,7 +2,7 @@
   "name": "college-notice-board",
   "version": "1.0.0",
   "description": "A comprehensive MERN stack application for managing college notices with admin authentication and public viewing",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:start\"",
     "backend:dev": "cd backend && npm run dev",
@@ -10,11 +10,13 @@
     "frontend:start": "cd frontend && npm start",
     "frontend:build": "cd frontend && npm run build",
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
-    "build": "npm run frontend:build",
+    "build": "npm run install:all && npm run frontend:build",
     "setup": "cd backend && npm run setup",
     "setup:atlas": "echo 'Make sure to update MONGODB_URI in backend/.env with your Atlas connection string' && npm run setup",
     "deploy:prepare": "npm run frontend:build",
-    "start": "npm run backend:start",
+    "start": "cd backend && npm start",
+    "render:backend": "cd backend && npm install && npm start",
+    "render:frontend": "cd frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
