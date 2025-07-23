@@ -15,6 +15,10 @@
     "setup:atlas": "echo 'Make sure to update MONGODB_URI in backend/.env with your Atlas connection string' && npm run setup",
     "deploy:prepare": "npm run frontend:build",
     "start": "cd backend && npm start",
+    "deploy:local": "npm run build && npm run start",
+    "deploy:production": "npm run build && npm run start",
+    "deploy:all": "concurrently \"npm run backend:start\" \"serve -s frontend/build -l 3000\"",
+    "postinstall": "npm run install:all",
     "render:backend": "cd backend && npm install && npm start",
     "render:frontend": "cd frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -36,6 +40,7 @@
     "concurrently": "^7.6.0"
   },
   "dependencies": {
-    "mongoose": "^8.16.3"
+    "mongoose": "^8.16.3",
+    "serve": "^14.2.4"
   }
 }
